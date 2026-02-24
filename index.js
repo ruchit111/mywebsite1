@@ -129,12 +129,9 @@ function decreaseQty(id) {
 // REMOVE
 
 function removeItem(id) {
-  if (cart.length > 1) {
+  if (cart.length >=1) 
     cart = cart.filter(i => i.id !== id);
     saveAndRender();
-  } else {
-
-  }
 }
 
 
@@ -260,8 +257,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // RENDER CART
  
- 
-
   
   function renderCart() {
 

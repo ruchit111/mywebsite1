@@ -1,11 +1,11 @@
 
-  /* ================= LOAD CART ================= */
+  //LOAD CART 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const checkoutItems = document.getElementById("checkoutItems");
 const totalAmountEl = document.getElementById("totalAmount");
 
-/* ================= RENDER CHECKOUT ================= */
+//RENDER CHECKOUT 
 function renderCheckout() {
   if (!checkoutItems) return;
 
@@ -55,7 +55,7 @@ function renderCheckout() {
 
 renderCheckout();
 
-/* ================= PLACE ORDER ================= */
+//PLACE ORDER 
 document.getElementById("checkoutForm").addEventListener("submit", function(e){
   e.preventDefault();
 
@@ -66,7 +66,7 @@ document.getElementById("checkoutForm").addEventListener("submit", function(e){
 });
 
 
-
+//user login
 
  document.addEventListener("DOMContentLoaded", () => {
       const user = JSON.parse(localStorage.getItem("user"));

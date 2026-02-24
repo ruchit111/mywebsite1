@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+    <style>
+        body{
+            margin: 0;
+            height: 100vh;
+            background: url("https://picsum.photos/1200")center/cover no-repeat;
+        }
+
+        .overlay{
+            backdrop-filter: blur(8px);
+            background:rgba(255, 255, 255, 0.4);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card{
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="overlay">
+<div class="card">
+<h2>Form Data</h2>
+<div id="out"></div>
+
+</div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+document.getElementById("out").innerHTML = `
+First Name: ${params.get("fname")} <br>
+Last Name: ${params.get("lname")} <br>
+Username: ${params.get("username")} <br>
+Email: ${params.get("email")} <br>
+Phone: ${params.get("phone")} <br>
+Password : ${params.get("password")} <br>
+Confirm Password : ${params.get("cpassword")}
+
+
+`;
+</script>
+
+</body>
+</html>

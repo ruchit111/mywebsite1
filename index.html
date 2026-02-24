@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Navbar + Cards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+  <nav class="navbar" style="height: 100px;">
+    <div class="logo">DEMO</div>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">What People Say</a></li>
+      <li><a href="#">How Q Works</a></li>
+      <li><a href="#">Insights</a></li>
+      <li><a href="#">FAQs</a></li>
+      <li class="cart" data-bs-toggle="offcanvas" data-bs-target="#cartCanvas">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cartCount">0</span>
+      </li>
+      <div style="padding: 20px;">
+        <input type="text" id="searchInput" placeholder="Search Products.."
+          style="width: 250px;padding: 5px;border: 1px solid #ccc;border-radius: 6px;">
+      </div>
+      <select id="sortSelect" style="padding: 8px;">
+        <option value="">Sort By</option>
+        <option value="low">Price : Low -> High</option>
+        <option value="high">Price : High -> Low</option>
+        <option value="az">Name : A->z</option>
+      </select>
+
+    </ul>
+
+
+    <div class="nav-right">
+      <button id="registerBtn">Register</button>
+    </div>
+  </nav>
+
+  <!-- bootstrap off canvas html -->
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title"> My Cart</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+
+    <div class="offcanvas-body d-flex flex-column">
+
+      <div id="cartItems" class="flex-grow-1"></div>
+
+
+      <button id="checkoutBtn" class="btn btn-success w-100 mt-3">
+        Checkout
+      </button>
+    </div>
+  </div>
+
+
+
+  <h2 style="padding:20px">card</h2>
+  <div class="container" id="cardContainer"></div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const registerBtn = document.getElementById("registerBtn");
+      // const cardContainer = document.getElementById("cardContainer");
+
+      if (user && user.isLoggedIn) {
+        registerBtn.innerText = user.name;
+        cardContainer.style.display = "grid";
+      } else {
+        registerBtn.innerText = "Register";
+        // cardContainer.style.display = "none";
+
+        registerBtn.onclick = () => {
+          window.location.href = "registration.html";
+        };
+      }
+    });
+
+  </script>
+
+
+  <script src="index.js"></script>
+</body>
+
+</html>

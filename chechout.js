@@ -1,11 +1,22 @@
 
-  //LOAD CART 
+// LOAD CART 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const checkoutItems = document.getElementById("checkoutItems");
 const totalAmountEl = document.getElementById("totalAmount");
+const cartCountEl = document.getElementById("cartCount"); // ✅ NEW
 
-//RENDER CHECKOUT 
+
+//  UPDATE CART BADGE 
+function updateCartBadge() {
+  if (!cartCountEl) return;
+
+  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+  cartCountEl.textContent = totalQty;
+}
+
+
+// RENDER CHECKOUT
 function renderCheckout() {
   if (!checkoutItems) return;
 
@@ -14,6 +25,7 @@ function renderCheckout() {
   if (cart.length === 0) {
     checkoutItems.innerHTML = "<p>Cart is empty</p>";
     totalAmountEl.textContent = "0";
+    updateCartBadge(); // ✅ IMPORTANT
     return;
   }
 
@@ -28,7 +40,6 @@ function renderCheckout() {
       <div class="card p-3 mb-3">
         <div class="d-flex gap-3 align-items-center">
 
-          <!-- ✅ IMAGE FIXED -->
           <img
             src="${item.image || 'https://via.placeholder.com/40'}"
             width="40"
@@ -51,12 +62,18 @@ function renderCheckout() {
 
   checkoutItems.innerHTML = html;
   totalAmountEl.textContent = total.toFixed(2);
+
+  updateCartBadge(); // ✅ VERY IMPORTANT
 }
 
-renderCheckout();
 
-//PLACE ORDER 
-document.getElementById("checkoutForm").addEventListener("submit", function(e){
+//  INITIAL LOAD 
+renderCheckout();
+updateCartBadge();
+
+
+// PLACE ORDER 
+document.getElementById("checkoutForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
   alert("Order Placed Successfully!");
@@ -66,28 +83,19 @@ document.getElementById("checkoutForm").addEventListener("submit", function(e){
 });
 
 
-//user login
+//  USER LOGIN 
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const registerBtn = document.getElementById("registerBtn");
 
- document.addEventListener("DOMContentLoaded", () => {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const registerBtn = document.getElementById("registerBtn");
-      // const cardContainer = document.getElementById("cardContainer");
+  if (user && user.isLoggedIn) {
+    registerBtn.innerText = user.name;
+  } else {
+    registerBtn.innerText = "Register";
 
-      if (user && user.isLoggedIn) {
-        registerBtn.innerText = user.name;
-        // cardContainer.style.display = "grid";
-      } else {
-        registerBtn.innerText = "Register";
-        // cardContainer.style.display = "none";
-
-        registerBtn.onclick = () => {
-          window.location.href = "registration.html";
-        };
-      }
-    });
-
-
-
-
-
+    registerBtn.onclick = () => {
+      window.location.href = "registration.html";
+    };
+  }
+});
 

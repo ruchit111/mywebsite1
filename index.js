@@ -89,6 +89,7 @@ function addToCart(id) {
 
 
 
+
 // INCREASE
 function increaseQty(id) {
   const item = cart.find(i => i.id === id);
@@ -98,6 +99,8 @@ function increaseQty(id) {
   renderCartlist();
   saveAndRender();
 }
+
+
 
 // DECREASE
 
@@ -134,7 +137,6 @@ function removeItem(id) {
 }
 
 
-
 // SAVE + RENDER
 function saveAndRender() {
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -152,6 +154,8 @@ function updateCartCount() {
 
 // RENDER CART 
 
+
+
 function renderCartlist() {
   cartBox.innerHTML = "";
 
@@ -160,17 +164,19 @@ function renderCartlist() {
     return;
   }
 
-  cart.forEach(item => {
+   cart.forEach(item => {
     cartBox.innerHTML += `
-      <div style="display:flex;align-items:center;margin-bottom:10px">
+      <div style="display:flex;align-items:center;margin-bottom:10px;border-bottom:1px solid #ddd;padding-bottom:8px">
         <img src="${item.image}" width="50">
+        
         <div style="flex:1;margin-left:10px">
           <div>${item.title}</div>
           <div>₹${item.price}</div>
         </div>
+
         <div>
           <button onclick="decreaseQty(${item.id})">-</button>
-          <span>${item.qty}</span>
+          <span style="margin:0 6px">${item.qty}</span>
           <button onclick="increaseQty(${item.id})">+</button>
           <button onclick="removeItem(${item.id})">❌</button>
         </div>
@@ -178,6 +184,8 @@ function renderCartlist() {
     `;
   });
 }
+
+renderCartlist();
 
 
 
@@ -225,6 +233,7 @@ sortSelect.addEventListener("change", () => {
 
   renderProducts(sortedProducts);
 });
+
 
 
 document.addEventListener("DOMContentLoaded", function () {

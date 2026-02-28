@@ -52,12 +52,16 @@ body {
   color: #4facfe;
 }
 
+
+
+
+/* 
 .nav-right {
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-}
+} */
 
 
 .username {
@@ -263,60 +267,79 @@ h2 {
 }
 
 
-@media (max-width: 768px) {
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px) {
+
+  /* ===== NAVBAR ===== */
   .navbar {
-    padding: 10px 15px;
+    gap: 6px;
+    padding: 8px;
+    flex-wrap: nowrap;          
+    overflow-x: auto;           
+  }
+
+  /* prevent shrink */
+  .logo,
+  .nav-links li,
+  #registerBtn,
+  #searchInput,
+  #sortSelect,
+  .cart {
+    flex-shrink: 0;
   }
 
   .logo {
-    font-size: 18px;
+    font-size: 14px;
+    white-space: nowrap;
   }
 
+  /* ===== NAV LINKS ===== */
   .nav-links {
-    width: 100%;
-    justify-content: center;
-    gap: 12px;
+    gap: 8px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-links a {
-    font-size: 13px;
+    font-size: 11px;
+    white-space: nowrap;
   }
 
-  .nav-right {
-    width: 100%;
-    justify-content: center;
+  /* ===== SEARCH ===== */
+  #searchInput {
+    width: 95px !important;
+    padding: 4px 6px !important;
+    font-size: 11px;
   }
 
+  /* ===== SORT ===== */
+  #sortSelect {
+    width: 95px;
+    font-size: 11px;
+    padding: 4px;
+  }
+
+  /* ===== REGISTER ===== */
   #registerBtn {
+    padding: 4px 6px;
+    font-size: 11px;
+    white-space: nowrap;
     width: auto;
-    padding: 6px 12px;
   }
 
-  h2 {
-    font-size: 1.5rem;
+  /* ===== CARDS ===== */
+  .card {
+    width: 100%;
   }
 
   .container {
     grid-template-columns: 1fr;
-    padding: 15px;
-  }
-
-  .card img {
-    height: 140px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-links {
-    justify-content: center;
-  }
-
-  .cart-panel {
-    width: 100%;
+    padding: 12px;
+    gap: 14px;
   }
 }
